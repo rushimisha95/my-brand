@@ -1,0 +1,88 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: black;
+    color: white;
+}
+.yellowright{
+    background-color: yellow;
+    height: 100vh;
+    width: 15rem;
+    border-top-right-radius: 100%;
+}
+.yellowright img{
+    height: 10cm;
+    width: 7cm;
+    margin-top: 4.5cm;
+    margin-left: 2cm;
+    border-radius: 30px;
+}
+.betweencontent{
+    background-color: yellow;
+    height: 7px;
+    width: 40px;
+    text-align: center;
+    margin-top: -561px;
+}
+.container{
+    display: flex;
+    margin-left: 14cm;
+}
+h4{
+    text-align: center;
+    margin-top: -570px;
+    margin-left: 5px;
+}
+h5{
+    text-align: center;
+    margin-top: -550px;
+    margin-left: -3.5cm;
+}
+button{
+    width: 150px;
+    height: 35px;
+    border-radius: 20px;
+    border-color: yellow;
+}
+.rigthicons i{
+    background-color: blue;
+    font-size: 100px;
+    height: 4cm;
+    width: 4cm;
+}
+.mainparagraph{
+    display: flex;
+    gap: 8cm;
+    margin-left: 530px;
+    margin-top: -500px;
+}
+.rigthicons img{
+  background-color: white;
+ height: 100px;
+ width: 100px;
+ border-radius: 100%;
+}
+h1{
+    font-size: 100px;
+    text-align: center;
+    color: rgba(109, 108, 108, 0.178);
+}
+h3{
+    text-align: center;
+    font-size:50px ;
+    margin-top: -80px;
+}
+.contactcontainer{
+    display: flex;
+    gap: 5cm;
+    margin-top: 2cm;
+}
+.shy{
+    margin-left: 2cm;
+}
+.shy img{
+    height: 1cm;
+    width: 1cm;
+}
