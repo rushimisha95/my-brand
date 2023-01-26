@@ -1,0 +1,245 @@
+
+body{
+    margin: 0;
+}
+
+/* navigation */
+li,a,h1{
+    font-family: "montserrat",sans-serif;
+    text-shadow: 2px 2px #42414157}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+}
+h1{
+    margin-left: 30px;
+    padding: 0px 0px;
+    cursor: pointer;
+}
+#theme{
+    width: 40px;
+    border-radius: 50%;
+}
+nav ul{
+list-style: none;
+}
+nav li{
+    display: inline-block;
+    padding: 10px 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    transition: all 0.4s ease 0s;
+}
+nav li a:hover{
+    color: rgb(232, 239, 17);
+}
+nav li a{
+    text-decoration: none;
+    color: var(--text-color2);
+}
+.active{
+    padding: 10px 10px;
+    border-radius: 5px;
+    background-color: var(--additional-color);
+}
+.side{
+    display: none;
+}
+
+
+/* about */
+body{
+    background-color: var(--secondary-color);
+}
+.flex{
+    display: flex;
+    margin-top: 10%;
+    justify-content: space-around;
+}
+
+.border{
+    width: 27%;
+    height: 70%;
+  
+}
+.profile{
+    width: 100%;
+    object-fit: cover;
+    border: 10px solid rgb(84, 83, 83);
+}
+
+:root{
+    --primary-color:rgb(72, 70, 70);
+    --secondary-color:black;
+    --back-color:white;
+    --additional-color:rgb(247, 112, 16);
+    --text-color1:black;
+    --text-color2:white;
+}
+
+.dark-theme{
+    --primary-color:rgb(254, 252, 252);
+    --secondary-color:rgb(148, 124, 124);
+    --back-color:black;
+    --additional-color:rgb(191, 103, 30);
+    --text-color1:white;
+    --text-color2:black;
+}
+
+
+
+
+/* container */ 
+.container{
+   
+    width: 45%;
+    height: 80%;
+    color: var(--text-color2);
+}
+.container h2{
+    margin-top: 0%;
+    margin-bottom: 0%;
+    font-family: 'Inter', sans-serif;
+    font-size: 30px;
+    letter-spacing: 2;
+
+}
+.container .mini{
+    margin-top: 1%;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 2;
+
+}
+.mini span{
+    color:var(--additional-color) ;
+}
+.body{
+    margin-top: 30px;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.7;
+    letter-spacing: 2;
+    margin-bottom: 30px;
+}
+pre{
+letter-spacing: 2;
+}
+pre span{
+color: rgb(62, 61, 61);
+}
+.lower{
+   display: flex;
+}
+button{
+    padding: 5px ;
+    background-color: var(--back-color);
+    color:var(--additional-color);
+    font-family: 'Inter', sans-serif;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button a{
+    text-decoration: none;
+    color: var(--additional-color);
+}
+
+/* pop up div */
+.allcontainer{
+    font-family: "montserrat",sans-serif;
+    top: 0%;
+    display: none;
+    width:100%;
+    height:100vw;
+    background-color: rgba(244, 241, 241, 0.639);
+    position: absolute;
+}
+.all{
+    background-color: rgb(210, 205, 205);
+    width: 20%;
+    margin-left: 40%;
+    margin-top: 15%;
+    margin-bottom: 10px;
+    border-radius: 7px;
+    position: fixed;
+    box-shadow: 5px 8px 10px #888888;
+    padding-bottom:10px ;
+    }
+    .all p{
+        text-align: center;
+        margin-top: 5px;
+        margin-bottom: 15px;
+    }
+    .all button{
+        width: 70%;
+        margin-left: 40px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border-style: none;
+        padding: 5px;
+        cursor: pointer;
+    }
+    
+@media(max-width:800px){
+/* navbar */
+nav ul li{
+    display:block;
+   }
+  
+   
+   nav{
+    position: absolute;
+    background: orangered;
+    height: 100vh;
+    top: 0;
+    right: -200px;
+    transition: 1s;
+   }
+   
+   .side{
+    display: block;
+    margin: 10px;
+    font-size: 25px;
+    cursor: pointer;
+    color: white;
+   }
+   nav ul{
+    padding: 10px;
+   }
+   
+    /* about */
+    .flex{
+        flex-direction: column;
+        margin-top: 20%;
+    }
+    .container{
+        margin-left: 5%; 
+        min-width: 95%;
+ }
+    .container h2{
+        font-size: 7vh;
+        text-align: center;
+    }
+    .mini{
+        font-size: 2vh;
+        text-align: center;
+    }
+    .lower{
+        flex-direction: column;
+    }
+    .border{
+        width: 80%;
+        margin-left: 10%;
+        margin-bottom: 40px;
+    }
+    .body{
+        font-size: 5vw;
+        margin-left: 25px;
+    }
+    button{
+        margin: 0% 0% 5% 25%;
+    padding: 8px;
+    }
+}

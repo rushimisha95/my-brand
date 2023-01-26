@@ -1,0 +1,81 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body> 
+
+        <header>
+        <h1 class="logo">IP</h1>
+        <nav>
+            <i class="side fa fa-close" onclick="hidemenu()"></i>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="./html/about.html">ABOUT US</a></li>
+                <li><a href="./html/services.html">SERVICES</a></li>
+                <li><a href="./html/portfolio.html">PORTFOLIO</a></li>
+                <li><a href="./html/blog.html">BLOG</a></li>
+                <li><a href="./html/contact.html">CONTACT</a></li>
+                <li><a href="./html/login.html" id="text">LOGIN</a></li>
+            </ul>
+        </nav>
+        <i class="side fa fa-bars" onclick="showmenu()"></i>
+</header>
+
+<h1 class="text">
+    HELLO,<br>
+    I'M rushimisha <br>
+    A PRODUCT  <span style="color: white;">DESIGNER </span>
+    <span style="color: white;">DEVELOPER </span>
+    <span style="color: white;">MANAGER </span>
+</h1>
+  <a href="./html/about.html"><button>SEE WHO AM I</button></a>
+  <div class="footer">
+    <a href=""><p class="fav facebook"><i class="fa fa-facebook-f"></i></p></a>
+    <a href="https://twitter.com/Rushimisha95"><p class="fav twitter"><i class="fa fa-twitter"></i></p></a>
+    <a href="https://www.linkedin.com/in/ineza-prince-9391ba15b/"><p class="fav linked"><i class="fa fa-linkedin"></i></p></a>
+
+  </div>
+  <div class="allcontainer">
+    <div class="all">
+     <p>WANT TO LOG OUT ?</p>
+     <button style="background-color: rgb(249, 154, 131);" id="logout">LOG OUT</button>
+     <button id="cancel">CANCEL</button>
+    </div>
+  </div>
+
+<!-- js file -->
+<script src="./javascript/runpage.js"></script>
+<script>
+  const text=document.getElementById("text")
+  const active= localStorage.getItem("Active")
+  const logout=document.getElementById("logout")
+  const cancel= document.getElementById("cancel")
+  const all=document.querySelector(".allcontainer")
+ const b=JSON.parse(active)
+  if (b.length>=1){
+    text.innerHTML="LOG OUT"
+    text.addEventListener('click',(e)=>{
+      e.preventDefault()
+      text.setAttribute("href","");
+      all.style.display="block";
+      logout.addEventListener('click',(e)=>{
+      e.preventDefault()
+      b.splice(0,1)
+      localStorage.setItem("Active",JSON.stringify(b))
+      window.location.reload()
+    })
+   cancel.addEventListener('click',(e)=>{
+    all.style.display="none"
+   })
+    })
+  }
+</script>
+
+
+</body>
+</html>

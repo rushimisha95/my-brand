@@ -1,0 +1,187 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/winblog.css">
+</head>
+<body>
+      <!-- navbar -->
+      <header>
+        <h1> <img src="../html/images/moon.png" alt=""  onclick="change()" id="theme"></h1>
+        <nav>
+            <i class="side fa fa-close" onclick="hidemenu()"></i>
+            <ul>
+                <li><a href="../index.html">HOME</a></li>
+                <li><a href="about.html">ABOUT US</a></li>
+                <li><a href="services.html">SERVICES</a></li>
+                <li><a href="portfolio.html">PORTFOLIO</a></li>
+                <li><a href="blog.html">BLOG</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+                <li><a href="login.html" id="text">LOGIN</a></li>
+            </ul>
+        </nav>
+        <i class="side fa fa-bars" onclick="showmenu()"></i>
+</header>
+
+
+
+
+    <!-- dashboard -->
+    <div class="flex">
+    <div class="left">
+        <img src="../html/images/rushimisha.jpg" alt="">
+        <p style="color: rgb(223, 122, 40);"><b>rushimisha dieudonne</b> </p>
+        <p class="email" >rushimisha95@gmail.com</p>
+        <a href="winblog.html"><div class="box blog"><p>BLOGS</p></div></a>
+        <a href="windraft.html"><div class="box drafts"><p>DRAFTS</p></div></a>
+        <a href="winmessages.html"><div class="box messages"><p>MESSAGES</p></div></a> 
+        <a href="dashboard.html"><div class="box add"><p>ADD BLOG</p></div></a>
+        <a href="winmanage.html"><div class="box manage"><p>MANAGE</p></div></a>
+
+    </div>
+    <div class="right">
+        <h1>DASHBOARD</h1>  
+  </div>
+</div>
+<!-- popup div -->
+<div class="allcontainer">
+    <div class="all">
+     <p>WANT TO LOG OUT ?</p>
+     <button style="background-color: rgb(249, 154, 131);" id="logout">LOG OUT</button>
+     <button id="cancel">CANCEL</button>
+    </div>
+  </div>
+<!-- javascript -->
+<script src="../javascript/runpage.js"></script>
+<script>
+window.onload=popup()
+// div data
+const like="<i class=\"icon1 fa fa-heart\" id=\"like\" aria-hidden=\"true\" style=\"color: rgb(0, 221, 255);\"></i> <br>"           
+const comment="<i class=\"icon2 fa fa-comment\" aria-hidden=\"true\" style=\"color: chocolate;\"></i> <br>"
+const right = document.querySelector(".right");
+
+
+    const editdiv =  document.querySelector(".edit");
+    let a = localStorage.getItem('Blogs');
+    if(a==null){
+        localStorage.setItem("Blogs",JSON.stringify([{title:"no blogs yet",body:"not yet",image:"none"}]))
+        a=localStorage.getItem('Blogs')
+    }
+    const b = JSON.parse(a)
+    if(b.length==1){
+        const header = document.createElement("h2")
+        header.classList.add("none")
+        const content = document.createTextNode("NO BLOGS YET !!!");
+        header.appendChild(content)
+        right.appendChild(header)
+    }
+    else{
+        for (let i = 1; i < b.length; i++) {
+            const modify=`<i class="change fa fa-edit" id="${b.indexOf(b[i])}" style="color: green;" onclick="modify(${b.indexOf(b[i])})"></i> <br>`
+            const remove=`<i class="delete fa fa-trash" id="${b.indexOf(b[i])}" aria-hidden="true" style="color: red;" onclick="erase(${b.indexOf(b[i])})"></i> <br>`
+            const parent = document.createElement("div")
+            const img = document.createElement("img");
+            const div =  document.createElement("div");
+            const p = document.createElement("p");
+            const editdiv =document.createElement("div")
+            const likeSpan= document.createElement("span")
+            const commentSpan= document.createElement("span")
+            const changeSpan=document.createElement("span")
+            const deleteSpan=document.createElement("span")
+            const likeDiv= document.createElement("div")
+            const commentDiv = document.createElement("div")
+            const changeDiv = document.createElement("div")
+            const deleteDiv = document.createElement("div")
+            likeDiv.classList.add("div")
+            img.classList.add("image")
+            commentDiv.classList.add("div")
+            changeDiv.classList.add("div")
+            changeDiv.classList.add("green")
+            deleteDiv.classList.add("div")
+            deleteDiv.classList.add("delete")            
+            editdiv.classList.add("edit")
+            changeSpan.textContent="Edit"
+            deleteSpan.textContent="Delete"
+            likeSpan.textContent="0"
+            commentSpan.textContent="31"
+            const yoo =document.querySelector(".delete")
+
+             // number of commements
+            let comments= localStorage.getItem("Comments");
+            if(comments==null){
+                localStorage.setItem("Comments",JSON.stringify([{blogid:"none",email:"none",comment:"none"}]));
+                comments= localStorage.getItem("Comments")
+            }
+            const msg= JSON.parse(comments);
+            const filter=msg.filter(message =>message.blogid==i)
+            commentSpan.innerHTML= filter.length;
+         // ----------------------------------------------
+
+        //  number of likes
+        let liki= localStorage.getItem("Likes");
+        if(liki==null){
+            localStorage.setItem("Likes", JSON.stringify([{blogid:"none",likes:0,dislikes:0}]))
+            liki= localStorage.getItem("Likes")
+        }
+        const heart= JSON.parse(liki)
+        console.log(heart)
+        const likefilter= heart.filter(thumpUp=>thumpUp.blogid==i)
+        if(likefilter.length==0){
+            likeSpan.textContent="0"
+        }
+        else{
+            console.log(likefilter)
+        likeSpan.textContent= likefilter[0].likes
+        }
+           
+        // ---------------------------------
+
+
+        // edit section
+            likeDiv.innerHTML= like + likeSpan.outerHTML
+            commentDiv.innerHTML= comment + commentSpan.outerHTML
+            changeDiv.innerHTML=  modify + changeSpan.outerHTML
+            deleteDiv.innerHTML= remove + deleteSpan.outerHTML
+            editdiv.innerHTML = likeDiv.outerHTML + commentDiv.outerHTML + changeDiv.outerHTML + deleteDiv.outerHTML;
+
+            parent.classList.add("blogs")
+            div.classList.add("parag");
+            img.src= b[i].image;
+            const content= document.createTextNode(b[i].title);
+            p.appendChild(content);
+            div.appendChild(p)
+            parent.innerHTML= img.outerHTML + div.outerHTML + editdiv.outerHTML
+            right.appendChild(parent)
+           
+        }
+
+        // delete blog
+        function erase(id){
+            let array= b.filter(blog => b.indexOf(blog)!=id)
+            localStorage.setItem("Blogs",JSON.stringify(array))
+            // console.log("done")
+          let comments= localStorage.getItem("Comments")
+            const result= JSON.parse(comments);
+            const com= result.filter(each=>each.blogid!=id);
+            localStorage.setItem("Comments",JSON.stringify(com))
+
+            let likes= localStorage.getItem("Likes")
+            const filt= JSON.parse(likes);
+            const erase= filt.filter(each=>each.blogid!=id);
+            localStorage.setItem("Likes",JSON.stringify(erase))
+            window.location.reload()
+           }
+           function modify(id){
+            window.location.href=`dashboard.html?page=${id}`
+           }
+       
+
+    }
+   
+
+</script>
+</body>
+</html>

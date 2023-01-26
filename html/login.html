@@ -1,0 +1,123 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+
+    <!-- navbar -->
+
+    <header>
+        <h1> <img src="../html/images/moon.png" alt=""  onclick="change()" id="theme"></h1>
+        <nav>
+            <i class="side fa fa-close" onclick="hidemenu()"></i>
+            <ul>
+                <li><a href="../index.html">HOME</a></li>
+                <li><a href="about.html">ABOUT US</a></li>
+                <li><a href="services.html">SERVICES</a></li>
+                <li><a href="portfolio.html">PORTFOLIO</a></li>
+                <li><a href="blog.html">BLOG</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+                <li onclick="dashboard(event)" ><a href="login.html" id="a">LOGIN</a></li>
+            </ul>
+        </nav>
+        <i class="side fa fa-bars" onclick="showmenu()"></i>
+</header>
+
+    <!-- login -->
+    <div class="bound">
+        <div class="container">
+            <form action="">
+            <h1 class="contact">LOGIN</h1>
+            <h4 class="error" id="error"></h4>
+            <input type="text" placeholder="EMAIL" class="box email" id="email" required> <br>
+            <input type="password" placeholder="PASSWORD" class="box subject" id="subject" required> <br>
+            <button class="login" onclick="login(event)">LOGIN</button>
+        </form>
+       <a href="signup.html"> <button class="signup">CREATE ACCOUNT</button></a>
+
+        </div>
+    </div>
+
+
+    <!-- javascript -->
+    <script src="../javascript/runpage.js"></script>
+    <script>
+        // login
+    function login(event){
+    event.preventDefault();
+    const redirect= document.getElementById("next");
+    const email=document.getElementById("email").value;
+    const password=document.getElementById("subject").value;
+    const err=document.getElementById("error")
+    let a=localStorage.getItem("Users")
+    let users=JSON.parse(a);
+    const object={
+        email:email,
+        password:password
+    }
+    if(email&&password){
+        err.innerHTML=""
+        if(!ValidateEmail(email)){
+            err.innerHTML="Email is not valid"
+        }else{
+            const index= users.findIndex(user =>user.email==email);
+             if(index!=(-1)){
+            if(email=="admin@gmail.com"){
+                if (password=="admin"){
+                localStorage.setItem("Active",JSON.stringify([{activeuser:email,likeaction:"0",dislikeaction:"0"}]))
+                window.location.href="dashboard.html"
+                 }
+                 else{
+                    err.innerHTML="Incorrect Password"
+                }
+                }
+                else{
+                    if(users[index].password==password){
+                        localStorage.setItem("Active",JSON.stringify([{activeuser:users[index].email,likeaction:"0",dislikeaction:"0"}]))
+                        window.location.href="blog.html"
+                    }
+                    else{
+                        err.innerHTML="Incorrect Password !!"
+                    }
+                }}
+                else{
+                    err.innerHTML="User does not exists !!"
+
+                }
+
+        }
+        }
+        else{
+            err.innerHTML="Please fill all fields"
+        }
+            }
+            // email validation
+            function ValidateEmail(mail) {
+                    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)
+            }
+
+
+
+            // direct login
+            // function dashboard(event){
+            //     const link= document.getElementById("a")
+            //     event.preventDefault()
+            //     let a=localStorage.getItem("Active")
+            //     if(a!=null){
+            //         const b = JSON.parse(a);
+            //         if(b[0].activeuser=="admin"){
+            //             console.log("here")
+            //             link.textContent="dash"
+            //             window.location.href="dashboard.html"
+            //         }
+            //     }
+            // }
+    </script>
+</body>
+</html>
